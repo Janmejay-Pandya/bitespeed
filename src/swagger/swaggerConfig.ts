@@ -6,14 +6,14 @@ export const swaggerOptions: swaggerJSDoc.Options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "BiteSpeed Identity API",
+      title: "BiteSpeed Identity API Assignment",
       version: "1.0.0",
       description: "API documentation for user identification logic",
     },
     servers: [
       {
-        url: "http://localhost:3000",
-        description: "Local dev server",
+        url: "https://bitespeed-fqe1.onrender.com/api/#/Identify/post_identify",
+        description: "server",
       },
     ],
   },

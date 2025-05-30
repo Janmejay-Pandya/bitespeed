@@ -1,14 +1,3 @@
-// // src/routes/identifyRoute.ts
-
-// import express from "express";
-// import { handleIdentify } from "../controllers/identifyController";
-
-// const router = express.Router();
-
-// router.post("/identify", handleIdentify);
-
-// export default router;
-
 
 import express from "express";
 import {handleIdentify}  from "../controllers/identifyController";
