@@ -1,5 +1,3 @@
-// // src/services/identifyService.ts
-
 // import prisma from "../prisma/client";
 // import { IdentifyRequest, IdentifyResponse } from "../types";
 
@@ -66,6 +64,9 @@
 //         { linkedId: primaryContact.id },
 //       ],
 //     },
+//     orderBy: {
+//       createdAt: "asc",
+//     },
 //   });
 
 //   const emails = Array.from(
@@ -78,18 +79,25 @@
 //     .filter((c) => c.linkPrecedence === "secondary")
 //     .map((c) => c.id);
 
+//   const metadata = allRelatedContacts.map((c) => ({
+//     id: c.id,
+//     linkedId: c.linkedId,
+//     linkPrecedence: c.linkPrecedence,
+//     createdAt: c.createdAt,
+//     updatedAt: c.updatedAt,
+//     deletedAt: null, // Not implemented yet
+//   }));
+
 //   return {
 //     contact: {
 //       primaryContactId: primaryContact.id,
-//       emails,
+//       emails ,
 //       phoneNumbers,
 //       secondaryContactIds,
+//       metadata, // 👈 Additional metadata section
 //     },
 //   };
 // };
-
-
-// src/services/identifyService.ts
 
 import prisma from "../prisma/client";
 import { IdentifyRequest, IdentifyResponse } from "../types";
@@ -163,11 +171,21 @@ export const identifyUser = async ({
   });
 
   const emails = Array.from(
-    new Set(allRelatedContacts.map((c) => c.email).filter(Boolean))
+    new Set(
+      allRelatedContacts
+        .map((c) => c.email)
+        .filter((e): e is string => e !== null)
+    )
   );
+
   const phoneNumbers = Array.from(
-    new Set(allRelatedContacts.map((c) => c.phoneNumber).filter(Boolean))
+    new Set(
+      allRelatedContacts
+        .map((c) => c.phoneNumber)
+        .filter((p): p is string => p !== null)
+    )
   );
+
   const secondaryContactIds = allRelatedContacts
     .filter((c) => c.linkPrecedence === "secondary")
     .map((c) => c.id);
@@ -178,7 +196,7 @@ export const identifyUser = async ({
     linkPrecedence: c.linkPrecedence,
     createdAt: c.createdAt,
     updatedAt: c.updatedAt,
-    deletedAt: null, // Not implemented yet
+    deletedAt: null, 
   }));
 
   return {
@@ -187,7 +205,8 @@ export const identifyUser = async ({
       emails,
       phoneNumbers,
       secondaryContactIds,
-      metadata, // 👈 Additional metadata section
+      metadata,
     },
   };
 };
+
