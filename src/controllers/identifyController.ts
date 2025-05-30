@@ -7,6 +7,8 @@ export const handleIdentify = async (req: Request, res: Response) => {
   try {
     const { email, phoneNumber } = req.body;
     const result = await identifyUser({ email, phoneNumber });
+    console.log(req.body);
+    
     res.json(result);
   } catch (error: any) {
     res.status(400).json({ error: error.message });

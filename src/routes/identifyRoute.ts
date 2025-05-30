@@ -19,10 +19,10 @@ const router = express.Router();
  *             properties:
  *               email:
  *                 type: string
- *                 example: sam@example.com
+ *                 example: jay@gmail.com
  *               phoneNumber:
  *                 type: string
- *                 example: "9999999999"
+ *                 example: "999993299"
  *     responses:
  *       200:
  *         description: Contact identification result
