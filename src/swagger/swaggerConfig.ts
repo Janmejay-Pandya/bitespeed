@@ -12,7 +12,7 @@ export const swaggerOptions: swaggerJSDoc.Options = {
     },
     servers: [
       {
-        url: "https://bitespeed-fqe1.onrender.com/api/",
+        url: "https://bitespeed-fqe1.onrender.com/identify",
         description: "server",
       },
     ],
