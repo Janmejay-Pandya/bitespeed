@@ -21,3 +21,27 @@ This project implements a basic identity reconciliation service for Bitespeed, a
 - **ORM**: Prisma
 - **API Docs**: Swagger UI
 - **Hosting**: Render
+
+## 🧠 API Endpoint
+
+### `/identify` (POST)
+
+**Request Body:**
+
+```json
+{
+  "email": "user@example.com",
+  "phoneNumber": "1234567890"
+}
+```
+**Response Body:**
+```json
+{
+  "contact": {
+    "primaryContactId": 1,
+    "emails": ["user@example.com"],
+    "phoneNumbers": ["1234567890"],
+    "secondaryContactIds": [2, 3]
+  }
+}
+```
